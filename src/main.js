@@ -6,3 +6,7 @@ Vue.config.productionTip = false
 new Vue({
   render: function (h) { return h(App) },
 }).$mount('#app')
+
+function abc() {
+  console.log('9999999');
+}
