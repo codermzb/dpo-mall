@@ -10,3 +10,4 @@ new Vue({
 function abc() {
   console.log('9999999');
 }
+abc()
