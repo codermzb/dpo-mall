@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+// import store from './store'
+// import router from './router'
 Vue.config.productionTip = false
 
 new Vue({
-  render: function (h) { return h(App) },
+  render: h => h(App),
+  // store,
+  // router
 }).$mount('#app')
-
-function abc() {
-  console.log('9999999');
-}
-abc()
