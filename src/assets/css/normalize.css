@@ -76,8 +76,8 @@ a {
 
 abbr[title] {
   border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2  修饰 */
-  text-decoration: underline dotted; /* 2 虚线*/
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -86,7 +86,7 @@ abbr[title] {
 
 b,
 strong {
-  font-weight: bolder;              /*设置文本粗细 更粗*/
+  font-weight: bolder;
 }
 
 /**
@@ -105,7 +105,7 @@ samp {
  * Add the correct font size in all browsers.
  */
 
-small {                        /*定义小型文本*/
+small {
   font-size: 80%;
 }
 
@@ -115,7 +115,7 @@ small {                        /*定义小型文本*/
  */
 
 sub,
-sup {                      /*定义上标和下标*/
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -235,7 +235,7 @@ legend {
   display: table; /* 1 */
   max-width: 100%; /* 1 */
   padding: 0; /* 3 */
-  white-space: normal; /* 1 空白符 被忽略*/
+  white-space: normal; /* 1 */
 }
 
 /**
@@ -281,7 +281,7 @@ textarea {
 
 [type="search"] {
   -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 轮廓偏移*/
+  outline-offset: -2px; /* 2 */
 }
 
 /**
@@ -299,7 +299,7 @@ textarea {
 
 ::-webkit-file-upload-button {
   -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2  继承*/
+  font: inherit; /* 2 */
 }
 
 /* Interactive

@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 // import store from './store'
-// import router from './router'
+import router from './router'
+// Vue.prototype.$bus = new Vue()
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
   // store,
-  // router
+  router
 }).$mount('#app')

@@ -1,9 +1,9 @@
 @import "./normalize.css";
-/*获取根元素html*/
+
 :root {
   --color-text: #666;
   --color-high-text: #ff5777;
-  --color-tint: #ff8198;  /*设置背景颜色*/
+  --color-tint: #ff8198;
   --color-background: #fff;
   --font-size: 14px;
   --line-height: 1.5;
@@ -42,7 +42,7 @@ a {
 }
 
 .clear-fix {
-  zoom: 1;  /*缩放*/
+  zoom: 1;
 }
 
 .arrow-right {
