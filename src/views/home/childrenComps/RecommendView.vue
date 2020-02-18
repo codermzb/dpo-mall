@@ -1,5 +1,5 @@
 <template>
-  <div id="recommend-view">
+  <div class="recommend-view">
     <div v-for="item in recommend" class="recommend-item">
       <a :href="item.link">
         <img :src="item.image" alt="">
@@ -28,7 +28,7 @@
 </script>
 
 <style scoped lang="less">
-#recommend-view {
+.recommend-view {
   display: flex;
   width: 100%;
   text-align: center;
