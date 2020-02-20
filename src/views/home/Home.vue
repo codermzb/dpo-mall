@@ -57,7 +57,8 @@
         backShow: false,
         refresh: null,
         tabShow: false,
-        tabOffsetTop: 0
+        tabOffsetTop: 0,
+        leaveHeight: 0
       }
     },
     created() {
@@ -72,6 +73,15 @@
       this.$bus.$on('imageLoad', () => {
         this.refresh()
       })
+
+    },
+    activated() {
+      console.log(this.leaveHeight);
+      this.$refs.scroll.scrollTo(0, this.leaveHeight, 0)
+    },
+    deactivated() {
+      this.leaveHeight = this.$refs.scroll.scroll.y
+      console.log(this.leaveHeight);
     },
     methods: {
       getHomeMultidata() {
@@ -106,7 +116,7 @@
         this.$refs.scroll.scrollTo(0, 0, 400)
       },
       scroll(position) {
-        this.backShow = position.y <= -1500? true: false
+        this.backShow = position.y <= -1500
         this.tabShow = -this.tabOffsetTop > position.y
       },
       pullingUp() {
@@ -129,12 +139,6 @@
 <style scoped lang="less">
   #home {
     height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     .home-nav {
       background-color: var(--color-tint);
       color: #ffffff;
@@ -154,9 +158,7 @@
       bottom: 48px;
       left: 0;
       right: 0;
-      /*height: calc(100%);*/
-      /*overflow: hidden;*/
-      /*height: 500px;*/
+      overflow: hidden;
     }
   }
 

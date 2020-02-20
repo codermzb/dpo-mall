@@ -220,7 +220,8 @@
 
 <style scoped>
   .wrapper {
-    height: 100vh;
+    height: 400px;
+    overflow: hidden;
     background-color: #5ea732;
   }
 </style>
