@@ -58,7 +58,8 @@
         refresh: null,
         tabShow: false,
         tabOffsetTop: 0,
-        leaveHeight: 0
+        leaveHeight: 0,
+        imageLister: null
       }
     },
     created() {
@@ -67,21 +68,25 @@
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
     },
+    //被缓存的组件第二次进来不会执行created函数以及mounted函数
     mounted() {
-      //*********bug没有组件缓存(keep-alive)的情况下,在回调函数里拿不到子组件数据.
-      this.refresh = debounce(this.$refs.scroll.refresh,300)
-      this.$bus.$on('imageLoad', () => {
-        this.refresh()
-      })
 
     },
+
     activated() {
-      console.log(this.leaveHeight);
+      //被缓存的组件,在初始化时也会在mounted之后执行adtivated()
       this.$refs.scroll.scrollTo(0, this.leaveHeight, 0)
+      //*********bug没有组件缓存(keep-alive)的情况下,在回调函数里拿不到子组件数据.
+      this.refresh = debounce(this.$refs.scroll.refresh,300)
+      this.imageLoad = () => {
+        this.refresh()
+      }
+      this.$bus.$on('imageLoad', this.imageLoad)
     },
     deactivated() {
       this.leaveHeight = this.$refs.scroll.scroll.y
-      console.log(this.leaveHeight);
+      //取消全局图片加载事件
+      this.$bus.$off('imageLoad', this.imageLoad)
     },
     methods: {
       getHomeMultidata() {

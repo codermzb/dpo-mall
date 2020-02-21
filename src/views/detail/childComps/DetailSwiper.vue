@@ -1,7 +1,7 @@
 <template>
     <swiper class="detail-swiper">
       <swiper-item v-for="item in topImages">
-        <img :src="item" alt="">
+        <img :src="item" alt="" @load="swiperImageLoad">
       </swiper-item>
     </swiper>
 </template>
@@ -20,6 +20,19 @@
         type: Array,
         default() {
           return []
+        }
+      }
+    },
+    data() {
+      return {
+        tem: false
+      }
+    },
+    methods: {
+      swiperImageLoad() {
+        if(!this.tem) {
+          this.$emit('swiperImageLoad')
+          this.tem = true
         }
       }
     }
