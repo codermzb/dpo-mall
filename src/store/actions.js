@@ -1,5 +1,11 @@
-// export default {
-//  dect(context,payload) {                 //通过this.$store.dispatch('dect',payload)调用
-//    context.commit('addCount',payload)   //只针对于当前模块中的mutations
-//  }
-// }
+export default {
+  addCart(context, payload) {
+    let oldProduct = context.state.cartList.find(item => item.iid === payload.iid)
+    if(oldProduct) {
+      context.commit('addCounter', oldProduct)
+    } else {
+      payload.counter = 1
+      context.commit('addCart', payload)
+    }
+  }
+}

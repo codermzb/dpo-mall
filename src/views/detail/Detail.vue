@@ -11,8 +11,7 @@
       <goods-list :goods="recommendInfo" ref="recommends"/>
     </scroll>
     <back-top @click.native="backClick" v-show="backShow"/>
-    <detail-footer-bar/>
-<!--    <detail-bottom-bar/>-->
+    <detail-footer-bar @addCart="addCart"/>
   </div>
 </template>
 
@@ -162,6 +161,15 @@
       },
       swiperImageLoad() {
         this.$refs.scroll.refresh()
+      },
+      addCart() {
+        const product = {}
+        product.image = this.topImages[0]
+        product.title = this.goods.title
+        product.desc = this.goods.desc
+        product.price = this.goods.realPrice
+        product.iid = this.iid
+        this.$store.dispatch('addCart', product)
       }
     }
   }

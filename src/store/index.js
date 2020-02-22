@@ -9,7 +9,7 @@ import getters from './getters'
 import moduleA from './modules/moduleA'
 
 const state = {
-  // counter: 1
+  cartList: []
 }
 
 const store = new Vuex.Store({
