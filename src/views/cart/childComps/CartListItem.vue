@@ -1,5 +1,8 @@
 <template>
   <div class="cart-list-item">
+    <div class="item-check-button">
+      <check-button :isChecked="itemInfo.checked" @click.native="checkClick"/>
+    </div>
     <div class="item-image">
       <img :src="itemInfo.image" alt="">
     </div>
@@ -15,14 +18,23 @@
 </template>
 
 <script>
+  import CheckButton from "components/content/checkButton/CheckButton";
   export default {
     name: "CartListItem",
+    components: {
+      CheckButton
+    },
     props: {
       itemInfo: {
         type: Object,
         default() {
           return {}
         }
+      }
+    },
+    methods: {
+      checkClick() {
+        this.itemInfo.checked = !this.itemInfo.checked
       }
     }
   }
@@ -34,6 +46,13 @@
     padding: 5px;
     width: 100%;
     box-shadow: 0 1px  rgba(100,100,100, .5);
+    .item-check-button {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 3px;
+    }
     .item-image {
       img {
         width: 80px;
@@ -50,8 +69,9 @@
       //white-space: nowrap ;在子盒子里面文字会撑开父盒子宽度父盒子撑开父盒子高度,看情况给hidden*/
       .item-title {
         white-space: nowrap;
-        text-overflow: ellipsis;
         overflow: hidden;
+
+        text-overflow: ellipsis;
       }
       .item-desc {
         white-space: nowrap;
