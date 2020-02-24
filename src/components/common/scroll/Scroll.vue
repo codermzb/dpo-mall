@@ -28,6 +28,7 @@
       }
     },
     mounted() {
+
       // 1.创建BScroll对象
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: true,
@@ -38,7 +39,6 @@
       this.scroll.on('scroll', (position) => {
         this.$emit('scroll', position)
       })
-
       // 3.监听上拉事件
       this.scroll.on('pullingUp', () => {
         this.$emit('pullingUp')

@@ -11,7 +11,7 @@
       <goods-list :goods="recommendInfo" ref="recommends"/>
     </scroll>
     <back-top @click.native="backClick" v-show="backShow"/>
-    <detail-footer-bar @addCart="addCart"/>
+    <detail-footer-bar @addCart="addToCart"/>
   </div>
 </template>
 
@@ -29,10 +29,12 @@
   import GoodsList from "components/content/goods/GoodsList"
 
   import Scroll from "components/common/scroll/Scroll";
+
   import BackTop from "components/content/backTop/BackTop";
 
   import {getDetail, getRecommend, Goods, Shop, GoodsParam} from 'network/detail'
   import {debounce} from "common/utils"
+  import { mapActions } from "vuex"
   export default {
     name: "Detail",
     components: {
@@ -141,6 +143,7 @@
       // console.log(this.getHeight);
     },
     methods: {
+      ...mapActions(['addCart']),
       backClick() {
         this.$refs.scroll.scrollTo(0, 0 , 300)
       },
@@ -162,14 +165,18 @@
       swiperImageLoad() {
         this.$refs.scroll.refresh()
       },
-      addCart() {
+      addToCart() {
+
         const product = {}
         product.image = this.topImages[0]
         product.title = this.goods.title
         product.desc = this.goods.desc
         product.price = this.goods.realPrice
         product.iid = this.iid
-        this.$store.dispatch('addCart', product)
+        //异步操作里面的具体操作执行完之后再执行需要的操作
+        this.addCart(product).then(res => {
+          this.$toast.show(res, 1400)
+        })
       }
     }
   }
@@ -193,6 +200,8 @@
       right: 0;
       bottom: 49px;
       overflow: hidden;
+    }
+    .toast {
     }
   }
 </style>

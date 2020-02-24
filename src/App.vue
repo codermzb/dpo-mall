@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive exclude="Detail,Cart">
+    <keep-alive exclude="Detail,Cart">  <!--  不能有空格  -->
       <router-view></router-view>
     </keep-alive>
     <main-tab-bar class="main-tab-bar"/>

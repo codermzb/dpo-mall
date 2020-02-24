@@ -70,8 +70,11 @@
     },
     //被缓存的组件第二次进来不会执行created函数以及mounted函数
     mounted() {
+      console.log(this.$refs.scroll.scroll);
     },
-
+    updated() {
+      this.$refs.scroll.refresh()
+    },
     activated() {
       //被缓存的组件,在初始化时也会在mounted之后执行adtivated()
       // this.$refs.scroll.scrollTo(0, this.leaveHeight, 0)
@@ -163,7 +166,7 @@
     .wrapper {
       position: absolute;
       top: 44px;
-      bottom: 48px;
+      bottom: 49px;
       left: 0;
       right: 0;
       overflow: hidden;

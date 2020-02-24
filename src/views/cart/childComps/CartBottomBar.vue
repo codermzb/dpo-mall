@@ -1,36 +1,58 @@
 <template>
   <div class="bottom-bar">
-    <div class="check-content">
-      <check-button class="check-button"/>
+    <div class="check-content" @click="checkClick">
+      <check-button class="check-button" :isChecked="isCheckedAll"/>
       <span>全选</span>
     </div>
     <span class="total-price">合计: ￥{{totalPrice}}</span>
-    <span class="total-counter">去计算:({{totalCounter}})</span>
+    <span class="total-counter" @click="countPrice">去计算:({{totalCounter}})</span>
   </div>
 </template>
 
 <script>
   import CheckButton from "components/content/checkButton/CheckButton";
+  import { mapGetters} from 'vuex'
 
   export default {
     name: "CartBottomBar",
     components: {
       CheckButton
     },
+    methods: {
+      checkClick() {
+        if(this.isCheckedAll) {
+          this.cartList.forEach(item => item.checked = false)
+        }else {
+          this.cartList.forEach(item => item.checked = true)
+        }
+      },
+      countPrice() {
+        if(!this.isCheckedAll) {
+          this.$toast.show('请选择要购买的商品', 1000)
+        }
+      }
+    },
     computed: {
+      ...mapGetters(['cartList']),
       totalPrice() {
-        return this.$store.getters.cartList.filter(item => {
+        return this.cartList.filter(item => {
           return item.checked
         }).reduce((prev, item) => {
           return prev + item.price * item.counter
         }, 0).toFixed(2)
       },
       totalCounter() {
-        return this.$store.getters.cartList.filter(item => {
+        return this.cartList.filter(item => {
           return item.checked
         }).reduce((prev, item) => {
           return prev + item.counter
         }, 0)
+      },
+      isCheckedAll() {
+        //遍历所有也要判断初始有没有长度
+        // return !(this.$store.getters.cartList.filter(item => !item.checked).length)
+        //找到既返回该元素并停止查找,若找不到则返回undefind
+        return this.cartList.length? !this.cartList.find(item => !item.checked): false
       }
     }
   }
