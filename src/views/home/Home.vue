@@ -70,7 +70,6 @@
     },
     //被缓存的组件第二次进来不会执行created函数以及mounted函数
     mounted() {
-      console.log(this.$refs.scroll.scroll);
     },
     updated() {
       this.$refs.scroll.refresh()

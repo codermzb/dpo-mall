@@ -1,8 +1,6 @@
 <template>
     <div id="profile">
-        <h2>
-            我的
-        </h2>
+     <h2>我的</h2>
     </div>
 </template>
 
@@ -12,6 +10,6 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 
 </style>
