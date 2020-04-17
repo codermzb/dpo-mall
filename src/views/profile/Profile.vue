@@ -1,15 +1,20 @@
 <template>
     <div id="profile">
-     <h2>我的</h2>
+        <div class="father">
+          <div class="son">
+            喔喔
+          </div>
+        </div>
     </div>
 </template>
 
 <script>
   export default {
-    name: "Profile"
+    name: "Profile",
+    components: {
+    }
   }
 </script>
 
 <style scoped lang="less">
-
 </style>
